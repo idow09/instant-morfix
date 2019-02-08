@@ -1,0 +1,3 @@
+class InstantMorfixBLoC {
+  void dispose() {}
+}

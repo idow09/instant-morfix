@@ -7,13 +7,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:instant_morfix/main.dart';
+import 'package:instant_morfix/instant_morfix.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(InstantMorfixApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
