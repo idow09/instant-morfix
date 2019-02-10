@@ -88,6 +88,7 @@ class QueryInput extends StatelessWidget {
 //        ),
       ),
       maxLines: 1,
+      onFieldSubmitted: (s) => bloc.search.add(s),
     );
   }
 }
@@ -100,9 +101,22 @@ class QueryOutput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        child: Text(
-      'This is a stub output',
-      style: Theme.of(context).textTheme.display1,
-    ));
+        child: StreamBuilder<Object>(
+            stream: _bloc.results,
+            builder: (context, snapshot) {
+              return snapshot.hasData
+                  ? Text(
+                      '${snapshot.data}',
+                      style: Theme.of(context).textTheme.display1,
+                    )
+                  : SizedBox(
+                      height: 48.0,
+                      child: FittedBox(
+                          fit: BoxFit.contain,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CircularProgressIndicator(),
+                          )));
+            }));
   }
 }
