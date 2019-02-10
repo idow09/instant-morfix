@@ -106,9 +106,7 @@ class QueryOutput extends StatelessWidget {
         stream: _bloc.results,
         builder: (context, snapshot) {
           return snapshot.hasData
-              ? Card(
-                  child: ResultsList(snapshot.data),
-                )
+              ? ResultsList(snapshot.data)
               : SizedBox(
                   height: 48.0,
                   child: FittedBox(
@@ -130,11 +128,27 @@ class ResultsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
         children: results.map((res) {
-      return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          res.input,
-          style: Theme.of(context).textTheme.display1,
+      return Card(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                res.input,
+                textAlign: TextAlign.right,
+                style: Theme.of(context).textTheme.display1,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                res.outputMeanings[0],
+                textAlign: TextAlign.left,
+                style: Theme.of(context).textTheme.display1,
+              ),
+            ),
+          ],
         ),
       );
     }).toList());
