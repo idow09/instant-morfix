@@ -33,9 +33,9 @@ class InstantMorfixBLoC {
 }
 
 class Result {
-  final String input;
+  final String inputMeaning;
   final String partOfSpeech;
   final List<String> outputMeanings;
 
-  Result(this.input, this.partOfSpeech, this.outputMeanings);
+  Result(this.inputMeaning, this.partOfSpeech, this.outputMeanings);
 }

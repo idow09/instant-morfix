@@ -134,19 +134,39 @@ class ResultsList extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(
-                res.input,
-                textAlign: TextAlign.right,
-                style: Theme.of(context).textTheme.display1,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  Text(
+                    res.partOfSpeech,
+                    textAlign: TextAlign.right,
+                    style: Theme.of(context).textTheme.body1,
+                  ),
+                  SizedBox(
+                    width: 8.0,
+                  ),
+                  Text(
+                    res.inputMeaning,
+                    textAlign: TextAlign.right,
+                    style: Theme.of(context).textTheme.display1,
+                  ),
+                ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                res.outputMeanings[0],
-                textAlign: TextAlign.left,
-                style: Theme.of(context).textTheme.display1,
-              ),
+            Divider(color: Colors.black),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: res.outputMeanings.map((meaning) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    meaning,
+                    textAlign: TextAlign.left,
+                    style: Theme.of(context).textTheme.display1,
+                  ),
+                );
+              }).toList(),
             ),
           ],
         ),
