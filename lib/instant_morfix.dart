@@ -32,6 +32,7 @@ class _InstantMorfixAppState extends State<InstantMorfixApp> {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        fontFamily: 'Alef',
         primarySwatch: Colors.blue,
       ),
       home: HomePage(_bloc),
@@ -136,7 +137,8 @@ class ResultsList extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
                 children: <Widget>[
                   Text(
                     res.partOfSpeech,
@@ -163,7 +165,7 @@ class ResultsList extends StatelessWidget {
                   child: Text(
                     meaning,
                     textAlign: TextAlign.left,
-                    style: Theme.of(context).textTheme.display1,
+                    style: Theme.of(context).textTheme.headline,
                   ),
                 );
               }).toList(),
