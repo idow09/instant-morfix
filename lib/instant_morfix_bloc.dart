@@ -26,7 +26,7 @@ class InstantMorfixBLoC {
 
   List<Result> searchFor(String query) {
     return new List.of([
-      Result("שלום", "שם ז'", ["Hi", "Hello"]),
+      Result("שָׁלוֹם", "שם ז'", ["Hi", "Hello"]),
       Result("להתראות", "שם נ'", ["Bye", "Chau"])
     ]);
   }
