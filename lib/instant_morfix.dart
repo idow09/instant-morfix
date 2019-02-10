@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: Padding(
+          child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -106,7 +106,9 @@ class QueryOutput extends StatelessWidget {
         stream: _bloc.results,
         builder: (context, snapshot) {
           return snapshot.hasData
-              ? Card(child: ResultsList(snapshot.data))
+              ? Card(
+                  child: ResultsList(snapshot.data),
+                )
               : SizedBox(
                   height: 48.0,
                   child: FittedBox(
@@ -120,16 +122,21 @@ class QueryOutput extends StatelessWidget {
 }
 
 class ResultsList extends StatelessWidget {
-  final List<Result> children;
+  final List<Result> results;
 
-  ResultsList(this.children);
+  ResultsList(this.results);
 
   @override
   Widget build(BuildContext context) {
-//    return ListView(children: children.map((res) => Text(res.input)).toList());
-    return Text(
-      '${children[0].input}',
-      style: Theme.of(context).textTheme.display1,
-    );
+    return Column(
+        children: results.map((res) {
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          res.input,
+          style: Theme.of(context).textTheme.display1,
+        ),
+      );
+    }).toList());
   }
 }
