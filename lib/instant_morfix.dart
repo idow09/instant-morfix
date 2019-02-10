@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:instant_morfix/instant_morfix_bloc.dart';
 
@@ -100,23 +102,34 @@ class QueryOutput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        child: StreamBuilder<Object>(
-            stream: _bloc.results,
-            builder: (context, snapshot) {
-              return snapshot.hasData
-                  ? Text(
-                      '${snapshot.data}',
-                      style: Theme.of(context).textTheme.display1,
-                    )
-                  : SizedBox(
-                      height: 48.0,
-                      child: FittedBox(
-                          fit: BoxFit.contain,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CircularProgressIndicator(),
-                          )));
-            }));
+    return StreamBuilder<UnmodifiableListView<Result>>(
+        stream: _bloc.results,
+        builder: (context, snapshot) {
+          return snapshot.hasData
+              ? Card(child: ResultsList(snapshot.data))
+              : SizedBox(
+                  height: 48.0,
+                  child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CircularProgressIndicator(),
+                      )));
+        });
+  }
+}
+
+class ResultsList extends StatelessWidget {
+  final List<Result> children;
+
+  ResultsList(this.children);
+
+  @override
+  Widget build(BuildContext context) {
+//    return ListView(children: children.map((res) => Text(res.input)).toList());
+    return Text(
+      '${children[0].input}',
+      style: Theme.of(context).textTheme.display1,
+    );
   }
 }
