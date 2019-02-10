@@ -25,12 +25,17 @@ class InstantMorfixBLoC {
   }
 
   List<Result> searchFor(String query) {
-    return new List.of([Result("Hi"), Result("Bye")]);
+    return new List.of([
+      Result("שלום", "שם ז'", ["Hi", "Hello"]),
+      Result("להתראות", "שם נ'", ["Bye", "Chau"])
+    ]);
   }
 }
 
 class Result {
-  final String word;
+  final String input;
+  final String partOfSpeech;
+  final List<String> outputMeanings;
 
-  Result(this.word);
+  Result(this.input, this.partOfSpeech, this.outputMeanings);
 }
