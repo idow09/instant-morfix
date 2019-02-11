@@ -32,8 +32,10 @@ class _InstantMorfixAppState extends State<InstantMorfixApp> {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        brightness: Brightness.dark,
+        accentColor: Colors.red[500],
+        accentColorBrightness: Brightness.light,
         fontFamily: 'Alef',
-        primarySwatch: Colors.blue,
       ),
       home: HomePage(_bloc),
     );
