@@ -1,8 +1,8 @@
 import 'package:instant_morfix/morfix_api.dart';
 
 class MockMorfixApi implements MorfixApi {
-  String getTranslation(String query) {
-    return """
+  Future<String> getTranslation(String query) async {
+    return Future<String>.value("""
   {
     "ResultType": "Match",
     "Status": "Valid",
@@ -307,8 +307,6 @@ class MockMorfixApi implements MorfixApi {
     ],
     "MachineTranslateResult": null
 }
-  """;
+  """);
   }
-
-  MockMorfixApi();
 }

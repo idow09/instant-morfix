@@ -28,7 +28,7 @@ class InstantMorfixBLoC {
   }
 
   Future<FullTranslation> searchFor(String query) async {
-    return Future.value(
-        FullTranslation.fromJson(json.decode(api.getTranslation(query))));
+    String translation = await api.getTranslation(query);
+    return FullTranslation.fromJson(json.decode(translation));
   }
 }

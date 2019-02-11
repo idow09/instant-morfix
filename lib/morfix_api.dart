@@ -1,5 +1,5 @@
 class MorfixApi {
-  String getTranslation(String query) {
+  Future<String> getTranslation(String query) async {
     // TODO: not yet implemented
     return '';
   }
