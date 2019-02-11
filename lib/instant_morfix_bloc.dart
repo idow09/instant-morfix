@@ -10,24 +10,25 @@ class InstantMorfixBLoC {
 
   InstantMorfixBLoC(this.api) {
     _searchController.stream.listen((query) async {
-      FullTranslate x = await searchFor(query);
+      FullTranslation x = await searchFor(query);
       _result.add(x);
     });
   }
 
   final StreamController<String> _searchController = StreamController<String>();
-  final BehaviorSubject<FullTranslate> _result =
-      BehaviorSubject<FullTranslate>();
+  final BehaviorSubject<FullTranslation> _result =
+      BehaviorSubject<FullTranslation>();
 
   Sink<String> get search => _searchController.sink;
 
-  Stream<FullTranslate> get result => _result.stream;
+  Stream<FullTranslation> get result => _result.stream;
 
   void dispose() {
     _searchController.close();
   }
 
-  Future<FullTranslate> searchFor(String query) async {
-    return Future.value(FullTranslate.fromJson(json.decode(api.getTranslation(query))));
+  Future<FullTranslation> searchFor(String query) async {
+    return Future.value(
+        FullTranslation.fromJson(json.decode(api.getTranslation(query))));
   }
 }

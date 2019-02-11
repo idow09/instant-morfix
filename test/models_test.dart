@@ -7,6 +7,6 @@ import 'package:instant_morfix/models.dart';
 void main() {
   test('Deserialization not throwing', () {
     var translationJson = MockMorfixApi().getTranslation("blah blah");
-    FullTranslate.fromJson(json.decode(translationJson));
+    FullTranslation.fromJson(json.decode(translationJson));
   });
 }

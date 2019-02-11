@@ -33,6 +33,7 @@ class _InstantMorfixAppState extends State<InstantMorfixApp> {
       title: 'Flutter Demo',
       theme: ThemeData(
         fontFamily: 'Alef',
+        scaffoldBackgroundColor: Colors.redAccent,
         primarySwatch: Colors.blue,
       ),
       home: HomePage(_bloc),
@@ -52,14 +53,17 @@ class HomePage extends StatelessWidget {
         child: Center(
           child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                QueryInput(bloc),
-                const SizedBox(height: 24.0),
-                QueryOutput(bloc)
-              ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  QueryInput(bloc),
+                  const SizedBox(height: 24.0),
+                  QueryOutput(bloc)
+                ],
+              ),
             ),
           ),
         ),
@@ -103,11 +107,11 @@ class QueryOutput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<FullTranslate>(
+    return StreamBuilder<FullTranslation>(
         stream: _bloc.result,
         builder: (context, snapshot) {
           return snapshot.hasData
-              ? ResultsList(snapshot.data)
+              ? FullTranslationWidget(snapshot.data)
               : SizedBox(
                   height: 48.0,
                   child: FittedBox(
@@ -120,59 +124,70 @@ class QueryOutput extends StatelessWidget {
   }
 }
 
-class ResultsList extends StatelessWidget {
-  final FullTranslate results;
+class FullTranslationWidget extends StatelessWidget {
+  final FullTranslation translation;
 
-  ResultsList(this.results);
+  FullTranslationWidget(this.translation);
 
   @override
   Widget build(BuildContext context) {
     return Column(
-        children: results.items.map((res) {
-      return Card(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.baseline,
-                textBaseline: TextBaseline.alphabetic,
-                children: <Widget>[
-                  Text(
-                    res.partOfSpeech,
-                    textAlign: TextAlign.right,
-                    style: Theme.of(context).textTheme.body1,
-                  ),
-                  SizedBox(
-                    width: 8.0,
-                  ),
-                  Text(
-                    res.inputMeanings[0],
-                    textAlign: TextAlign.right,
-                    style: Theme.of(context).textTheme.display1,
-                  ),
-                ],
-              ),
-            ),
-            Divider(color: Colors.black),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: res.outputMeanings.map((meaning) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    meaning,
-                    textAlign: TextAlign.left,
-                    style: Theme.of(context).textTheme.headline,
-                  ),
-                );
-              }).toList(),
-            ),
-          ],
-        ),
-      );
+        children: translation.items.map((item) {
+      return TranslationItemWidget(item);
     }).toList());
+  }
+}
+
+class TranslationItemWidget extends StatelessWidget {
+  final TranslationItem item;
+
+  TranslationItemWidget(this.item);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              textBaseline: TextBaseline.alphabetic,
+              children: <Widget>[
+                Text(
+                  item.partOfSpeech,
+                  textAlign: TextAlign.right,
+                  style: Theme.of(context).textTheme.body1,
+                ),
+                SizedBox(
+                  width: 8.0,
+                ),
+                Text(
+                  item.inputMeanings[0],
+                  textAlign: TextAlign.right,
+                  style: Theme.of(context).textTheme.display1,
+                ),
+              ],
+            ),
+          ),
+          Divider(color: Colors.black),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: item.outputMeanings.map((meaning) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  meaning,
+                  textAlign: TextAlign.left,
+                  style: Theme.of(context).textTheme.headline,
+                ),
+              );
+            }).toList(),
+          ),
+        ],
+      ),
+    );
   }
 }
