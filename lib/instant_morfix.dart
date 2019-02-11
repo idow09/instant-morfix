@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instant_morfix/instant_morfix_bloc.dart';
-import 'package:instant_morfix/mock_morfix_api.dart';
 import 'package:instant_morfix/models.dart';
+import 'package:instant_morfix/morfix_api.dart';
 
 void main() => runApp(InstantMorfixApp());
 
@@ -18,7 +18,7 @@ class _InstantMorfixAppState extends State<InstantMorfixApp> {
   @override
   void initState() {
     super.initState();
-    _bloc = InstantMorfixBLoC(MockMorfixApi());
+    _bloc = InstantMorfixBLoC(MorfixApi());
   }
 
   @override
