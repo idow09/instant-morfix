@@ -1,7 +1,7 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:instant_morfix/instant_morfix_bloc.dart';
+import 'package:instant_morfix/mock_morfix_api.dart';
+import 'package:instant_morfix/models.dart';
 
 void main() => runApp(InstantMorfixApp());
 
@@ -18,7 +18,7 @@ class _InstantMorfixAppState extends State<InstantMorfixApp> {
   @override
   void initState() {
     super.initState();
-    _bloc = InstantMorfixBLoC();
+    _bloc = InstantMorfixBLoC(MockMorfixApi());
   }
 
   @override
@@ -103,7 +103,7 @@ class QueryOutput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<UnmodifiableListView<Result>>(
+    return StreamBuilder<FullTranslate>(
         stream: _bloc.results,
         builder: (context, snapshot) {
           return snapshot.hasData
@@ -121,14 +121,14 @@ class QueryOutput extends StatelessWidget {
 }
 
 class ResultsList extends StatelessWidget {
-  final List<Result> results;
+  final FullTranslate results;
 
   ResultsList(this.results);
 
   @override
   Widget build(BuildContext context) {
     return Column(
-        children: results.map((res) {
+        children: results.items.map((res) {
       return Card(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -149,7 +149,7 @@ class ResultsList extends StatelessWidget {
                     width: 8.0,
                   ),
                   Text(
-                    res.inputMeaning,
+                    res.inputMeanings[0],
                     textAlign: TextAlign.right,
                     style: Theme.of(context).textTheme.display1,
                   ),

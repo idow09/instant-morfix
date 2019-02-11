@@ -1,41 +1,33 @@
 import 'dart:async';
-import 'dart:collection';
+import 'dart:convert';
 
+import 'package:instant_morfix/models.dart';
+import 'package:instant_morfix/morfix_api.dart';
 import 'package:rxdart/rxdart.dart';
 
 class InstantMorfixBLoC {
-  InstantMorfixBLoC() {
+  final MorfixApi api;
+
+  InstantMorfixBLoC(this.api) {
     _searchController.stream.listen((query) async {
-      List<Result> x = searchFor(query);
+      FullTranslate x = searchFor(query);
       _results.add(x);
     });
   }
 
   final StreamController<String> _searchController = StreamController<String>();
-  final BehaviorSubject<List<Result>> _results =
-      BehaviorSubject<List<Result>>();
+  final BehaviorSubject<FullTranslate> _results =
+      BehaviorSubject<FullTranslate>();
 
   Sink<String> get search => _searchController.sink;
 
-  Stream<UnmodifiableListView<Result>> get results =>
-      _results.stream.map((list) => UnmodifiableListView(list));
+  Stream<FullTranslate> get results => _results.stream;
 
   void dispose() {
     _searchController.close();
   }
 
-  List<Result> searchFor(String query) {
-    return new List.of([
-      Result("שָׁלוֹם", "שם ז'", ["Hi", "Hello"]),
-      Result("להתראות", "שם נ'", ["Bye", "Chau"])
-    ]);
+  FullTranslate searchFor(String query) {
+    return FullTranslate.fromJson(json.decode(api.getTranslation(query)));
   }
-}
-
-class Result {
-  final String inputMeaning;
-  final String partOfSpeech;
-  final List<String> outputMeanings;
-
-  Result(this.inputMeaning, this.partOfSpeech, this.outputMeanings);
 }
