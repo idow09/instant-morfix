@@ -309,4 +309,6 @@ class MockMorfixApi implements MorfixApi {
 }
   """);
   }
+
+  noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
