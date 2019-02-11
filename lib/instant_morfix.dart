@@ -104,7 +104,7 @@ class QueryOutput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<FullTranslate>(
-        stream: _bloc.results,
+        stream: _bloc.result,
         builder: (context, snapshot) {
           return snapshot.hasData
               ? ResultsList(snapshot.data)
