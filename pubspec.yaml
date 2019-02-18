@@ -14,13 +14,14 @@ dependencies:
   cupertino_icons: ^0.1.2
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.7.0
   flutter_test:
     sdk: flutter
 
 flutter_icons:
   android: "ic_launcher"
   ios: true
-  image_path: "assets/icon/web_hi_res_512.png"
+  image_path: "assets/icon/instant_morfix.png"
 
 flutter:
   uses-material-design: true
