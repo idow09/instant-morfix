@@ -113,14 +113,7 @@ class QueryOutput extends StatelessWidget {
         builder: (context, snapshot) {
           return snapshot.hasData
               ? FullTranslationWidget(snapshot.data)
-              : SizedBox(
-                  height: 48.0,
-                  child: FittedBox(
-                      fit: BoxFit.contain,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: CircularProgressIndicator(),
-                      )));
+              : Container();
         });
   }
 }
