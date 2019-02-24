@@ -95,6 +95,7 @@ class QueryInput extends StatelessWidget {
 //              ),
 //        ),
       ),
+      autofocus: true,
       maxLines: 1,
       onFieldSubmitted: (s) => bloc.search.add(s),
     );
