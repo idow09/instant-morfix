@@ -6,9 +6,9 @@ import 'package:instant_morfix/morfix_api.dart';
 import 'package:rxdart/rxdart.dart';
 
 class InstantMorfixBLoC {
-  final MorfixApi api;
+  final MorfixApi _api;
 
-  InstantMorfixBLoC(this.api) {
+  InstantMorfixBLoC(this._api) {
     _searchController.stream.listen((query) async {
       FullTranslation x = await searchFor(query);
       _result.add(x);
@@ -28,7 +28,7 @@ class InstantMorfixBLoC {
   }
 
   Future<FullTranslation> searchFor(String query) async {
-    String translation = await api.getTranslation(query);
+    String translation = await _api.getTranslation(query);
     return FullTranslation.fromJson(json.decode(translation));
   }
 }
