@@ -15,7 +15,7 @@ class InstantMorfixBLoC {
   }
 
   final StreamController<String> _searchController = StreamController<String>();
-  final StreamController<void> _focusController = StreamController<void>();
+  final BehaviorSubject<void> _focusController = BehaviorSubject<void>();
   final BehaviorSubject<FullTranslation> _result =
       BehaviorSubject<FullTranslation>();
 
@@ -25,7 +25,7 @@ class InstantMorfixBLoC {
 
   Stream<FullTranslation> get result => _result.stream;
 
-  Stream<void> get focusCommand => _focusController.stream;
+  Stream<void> get focusCommand => _focusController.stream.startWith(null);
 
   void dispose() {
     _searchController.close();

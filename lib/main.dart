@@ -117,7 +117,6 @@ class _QueryInputState extends State<QueryInput> {
   Widget build(BuildContext context) {
     return TextFormField(
       textInputAction: TextInputAction.done,
-      autofocus: true,
       focusNode: _focusNode,
       controller: _controller,
       maxLines: 1,
