@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:instant_morfix/morfix_api.dart';
 
 class MockMorfixApi implements MorfixApi {
