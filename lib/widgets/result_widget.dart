@@ -10,14 +10,15 @@ class ResultWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: isToEnglish ? TextDirection.rtl : TextDirection.ltr,
-      child: Card(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+    return Card(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Directionality(
+              textDirection:
+                  isToEnglish ? TextDirection.rtl : TextDirection.ltr,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -39,22 +40,25 @@ class ResultWidget extends StatelessWidget {
                 ],
               ),
             ),
-            Divider(color: Colors.black),
-            Column(
+          ),
+          Divider(color: Colors.black),
+          Directionality(
+            textDirection: isToEnglish ? TextDirection.ltr : TextDirection.rtl,
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: item.outputMeanings.map((meaning) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     meaning,
-                    textAlign: TextAlign.end,
+                    textAlign: TextAlign.start,
                     style: Theme.of(context).textTheme.headline,
                   ),
                 );
               }).toList(),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
