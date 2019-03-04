@@ -19,9 +19,7 @@ class _InputWidgetState extends State<InputWidget> {
   void initState() {
     super.initState();
     _focusNode.addListener(() {
-      print('focusNode did something');
       if (_focusNode.hasFocus) {
-        print('focusNode has focus!');
         _controller.selection =
             TextSelection(baseOffset: 0, extentOffset: _controller.text.length);
       }
