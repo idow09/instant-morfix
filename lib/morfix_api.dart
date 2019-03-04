@@ -17,6 +17,7 @@ class MorfixApi {
     final response = await _client.post(Uri.parse('$baseUrl'),
         headers: {'Content-Type': 'application/json'},
         body: '{"Query":"$query"}');
+    if (response.statusCode != 200) throw Exception('Request failed.');
     return response.body;
   }
 }

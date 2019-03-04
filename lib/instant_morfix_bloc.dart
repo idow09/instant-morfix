@@ -10,12 +10,17 @@ class InstantMorfixBLoC {
 
   InstantMorfixBLoC(this._api) {
     _searchController.stream.listen((query) async {
-      _result.add(await searchFor(query));
+      try {
+        _result.add(await searchFor(query));
+      } catch (e) {
+        _error.add(e);
+      }
     });
   }
 
   final StreamController<String> _searchController = StreamController<String>();
   final BehaviorSubject<void> _focusController = BehaviorSubject<void>();
+  final BehaviorSubject<Exception> _error = BehaviorSubject<Exception>();
   final BehaviorSubject<FullTranslation> _result =
       BehaviorSubject<FullTranslation>();
 
@@ -24,6 +29,8 @@ class InstantMorfixBLoC {
   Sink<void> get focusRequest => _focusController.sink;
 
   Stream<FullTranslation> get result => _result.stream;
+
+  Stream<Exception> get error => _error.stream;
 
   Stream<void> get focusCommand => _focusController.stream.startWith(null);
 

@@ -12,32 +12,50 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          onTap: () => bloc.focusRequest.add(null),
-          child: Container(
-            constraints: BoxConstraints.expand(),
-            child: Center(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      InputWidget(bloc),
-                      const SizedBox(height: 24.0),
-                      ResultsWidget(bloc)
-                    ],
+      body: Builder(
+        builder: (BuildContext context) {
+          bloc.error.listen((Exception e) {
+            Scaffold.of(context)
+                .showSnackBar(SnackBar(content: Text(getErrorMessage(e))));
+          });
+
+          return SafeArea(
+            child: GestureDetector(
+              behavior: HitTestBehavior.translucent,
+              onTap: () => bloc.focusRequest.add(null),
+              child: Container(
+                constraints: BoxConstraints.expand(),
+                child: Center(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          InputWidget(bloc),
+                          const SizedBox(height: 24.0),
+                          ResultsWidget(bloc)
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
+  }
+
+  String getErrorMessage(Exception e) {
+    var msg = 'Request Failed.';
+    assert(() {
+      msg = e.toString();
+      return true;
+    }());
+    return msg;
   }
 }
