@@ -41,6 +41,7 @@ class _InputWidgetState extends State<InputWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: Theme.of(context).textTheme.display1,
       textAlign: TextAlign.center,
       textInputAction: TextInputAction.done,
       focusNode: _focusNode,
@@ -49,7 +50,7 @@ class _InputWidgetState extends State<InputWidget> {
       onFieldSubmitted: (s) => widget.bloc.search.add(s),
       decoration: const InputDecoration(
         border: OutlineInputBorder(),
-        hintText: 'Type in Query / הקלד שאילתא',
+        hintText: 'Type / הקלד',
 //        suffixIcon: GestureDetector(
 //          dragStartBehavior: DragStartBehavior.down,
 //          onTap: () {},
