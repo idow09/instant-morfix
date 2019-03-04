@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:instant_morfix/home_page.dart';
 import 'package:instant_morfix/instant_morfix_bloc.dart';
 import 'package:instant_morfix/morfix_api.dart';
+import 'package:instant_morfix/widgets/home_page.dart';
 
 class InstantMorfixApp extends StatefulWidget {
   const InstantMorfixApp({Key key}) : super(key: key);

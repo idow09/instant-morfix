@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:instant_morfix/input_widget.dart';
 import 'package:instant_morfix/instant_morfix_bloc.dart';
-import 'package:instant_morfix/results_widget.dart';
+import 'package:instant_morfix/widgets/input_widget.dart';
+import 'package:instant_morfix/widgets/results_widget.dart';
 
 class HomePage extends StatelessWidget {
   final InstantMorfixBLoC bloc;
