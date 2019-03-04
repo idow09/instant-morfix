@@ -4,14 +4,14 @@ import 'package:instant_morfix/models.dart';
 
 class ResultWidget extends StatelessWidget {
   final TranslationItem item;
-  final bool isOriginLangRtl;
+  final bool isToEnglish;
 
-  ResultWidget(this.item, {this.isOriginLangRtl = true});
+  ResultWidget(this.item, this.isToEnglish);
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: isOriginLangRtl ? TextDirection.rtl : TextDirection.ltr,
+      textDirection: isToEnglish ? TextDirection.rtl : TextDirection.ltr,
       child: Card(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

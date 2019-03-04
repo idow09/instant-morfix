@@ -13,10 +13,14 @@ class ResultsWidget extends StatelessWidget {
     return StreamBuilder<FullTranslation>(
         stream: _bloc.result,
         builder: (context, snapshot) {
+          final bool isToEng = snapshot.data.translationType == 'ToEnglish';
           return snapshot.hasData
               ? Column(
                   children: snapshot.data.items.map((item) {
-                  return ResultWidget(item);
+                  return ResultWidget(
+                    item,
+                    isToEng,
+                  );
                 }).toList())
               : Container();
         });
