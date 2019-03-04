@@ -16,19 +16,22 @@ class HomePage extends StatelessWidget {
         child: GestureDetector(
           behavior: HitTestBehavior.translucent,
           onTap: () => bloc.focusRequest.add(null),
-          child: Center(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    QueryInput(bloc),
-                    const SizedBox(height: 24.0),
-                    QueryOutput(bloc)
-                  ],
+          child: Container(
+            constraints: BoxConstraints.expand(),
+            child: Center(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      QueryInput(bloc),
+                      const SizedBox(height: 24.0),
+                      QueryOutput(bloc)
+                    ],
+                  ),
                 ),
               ),
             ),
