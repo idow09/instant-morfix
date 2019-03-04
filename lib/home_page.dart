@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:instant_morfix/input_widget.dart';
 import 'package:instant_morfix/instant_morfix_bloc.dart';
-import 'package:instant_morfix/query_input.dart';
-import 'package:instant_morfix/query_output.dart';
+import 'package:instant_morfix/results_widget.dart';
 
 class HomePage extends StatelessWidget {
   final InstantMorfixBLoC bloc;
@@ -27,9 +27,9 @@ class HomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
-                      QueryInput(bloc),
+                      InputWidget(bloc),
                       const SizedBox(height: 24.0),
-                      QueryOutput(bloc)
+                      ResultsWidget(bloc)
                     ],
                   ),
                 ),

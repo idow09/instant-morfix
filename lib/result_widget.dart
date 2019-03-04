@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instant_morfix/models.dart';
 
-class TranslationItemWidget extends StatelessWidget {
+class ResultWidget extends StatelessWidget {
   final TranslationItem item;
 
-  TranslationItemWidget(this.item);
+  ResultWidget(this.item);
 
   @override
   Widget build(BuildContext context) {

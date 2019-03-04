@@ -2,16 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instant_morfix/instant_morfix_bloc.dart';
 
-class QueryInput extends StatefulWidget {
+class InputWidget extends StatefulWidget {
   final InstantMorfixBLoC bloc;
 
-  const QueryInput(this.bloc);
+  const InputWidget(this.bloc);
 
   @override
-  _QueryInputState createState() => _QueryInputState();
+  _InputWidgetState createState() => _InputWidgetState();
 }
 
-class _QueryInputState extends State<QueryInput> {
+class _InputWidgetState extends State<InputWidget> {
   final _controller = TextEditingController();
   final _focusNode = FocusNode();
 
