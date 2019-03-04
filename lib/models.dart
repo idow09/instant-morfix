@@ -1,7 +1,8 @@
 class FullTranslation {
   final List<TranslationItem> items;
+  final String translationType;
 
-  FullTranslation(this.items);
+  FullTranslation(this.items, this.translationType);
 
   @override
   String toString() {
@@ -9,13 +10,15 @@ class FullTranslation {
   }
 
   factory FullTranslation.fromJson(dynamic json) {
-    final items = ((json as Map<String, Object>)['Words'] as List)
+    final map = (json as Map<String, Object>);
+    final translationType = map['TranslationType'] as String;
+    final items = (map['Words'] as List)
         .cast<Map<String, Object>>()
         .map((Map<String, Object> item) {
       return TranslationItem.fromJson(item);
     }).toList();
 
-    return FullTranslation(items);
+    return FullTranslation(items, translationType);
   }
 
   bool get isPopulated => items.isNotEmpty;

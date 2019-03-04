@@ -8,6 +8,9 @@ import 'mock_morfix_api.dart';
 void main() {
   test('Deserialization not throwing', () async {
     var translationJson = await MockMorfixApi().getTranslation("blah blah");
-    FullTranslation.fromJson(json.decode(translationJson));
+    var fullTranslation =
+        FullTranslation.fromJson(json.decode(translationJson));
+    expect(fullTranslation.translationType, isNotEmpty);
+    expect(fullTranslation.items[0].outputMeanings[0], isNotEmpty);
   });
 }
