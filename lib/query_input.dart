@@ -41,6 +41,7 @@ class _QueryInputState extends State<QueryInput> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textAlign: TextAlign.center,
       textInputAction: TextInputAction.done,
       focusNode: _focusNode,
       controller: _controller,
@@ -48,8 +49,7 @@ class _QueryInputState extends State<QueryInput> {
       onFieldSubmitted: (s) => widget.bloc.search.add(s),
       decoration: const InputDecoration(
         border: OutlineInputBorder(),
-        hintText: 'Type in English / Hebrew',
-        labelText: 'Translate',
+        hintText: 'Type in Query / הקלד שאילתא',
 //        suffixIcon: GestureDetector(
 //          dragStartBehavior: DragStartBehavior.down,
 //          onTap: () {},
