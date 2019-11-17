@@ -4,7 +4,7 @@ description: The simplest Morfix client
 version: 0.0.1+1
 
 environment:
-  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -12,6 +12,7 @@ dependencies:
   flutter_bloc: ^2.0.0
   rxdart: ^0.22.0
   http: ^0.11.3+16
+  equatable: ^0.6.0
   cupertino_icons: ^0.1.2
 
 dev_dependencies:
