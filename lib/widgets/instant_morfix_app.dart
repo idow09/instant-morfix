@@ -1,42 +1,40 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:instant_morfix/instant_morfix_bloc.dart';
-import 'package:instant_morfix/morfix_api.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:instant_morfix/focus_bloc.dart';
+import 'package:instant_morfix/translation_bloc.dart';
+import 'package:instant_morfix/translation_engine.dart';
 import 'package:instant_morfix/widgets/home_page.dart';
 
-class InstantMorfixApp extends StatefulWidget {
-  const InstantMorfixApp({Key key}) : super(key: key);
+class InstantMorfixApp extends StatelessWidget {
+  final TranslationEngine translationEngine;
 
-  @override
-  _InstantMorfixAppState createState() => _InstantMorfixAppState();
-}
-
-class _InstantMorfixAppState extends State<InstantMorfixApp> {
-  InstantMorfixBLoC _bloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _bloc = InstantMorfixBLoC(MorfixApi());
-  }
-
-  @override
-  void dispose() {
-    _bloc.dispose();
-    super.dispose();
-  }
+  const InstantMorfixApp({Key key, this.translationEngine})
+      : assert(translationEngine != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter Instant Morfix',
       theme: ThemeData(
         brightness: Brightness.dark,
         accentColor: Colors.red[500],
         accentColorBrightness: Brightness.light,
         fontFamily: 'Alef',
       ),
-      home: HomePage(_bloc),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider<TranslationBloc>(
+            builder: (context) =>
+                TranslationBloc(translationEngine: translationEngine),
+          ),
+          BlocProvider<FocusBloc>(
+            builder: (context) => FocusBloc(),
+          ),
+        ],
+        child: HomePage(),
+      ),
     );
   }
 }
