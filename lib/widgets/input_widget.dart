@@ -41,6 +41,7 @@ class _InputWidgetState extends State<InputWidget> {
         style: Theme.of(context).textTheme.display1,
         textAlign: TextAlign.center,
         textInputAction: TextInputAction.done,
+        autofocus: true,
         focusNode: _focusNode,
         controller: _controller,
         maxLines: 1,
