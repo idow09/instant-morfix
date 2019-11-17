@@ -1,7 +1,7 @@
 name: instant_morfix
 description: The simplest Morfix client
 
-version: 0.1.0
+version: 0.3.0
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
